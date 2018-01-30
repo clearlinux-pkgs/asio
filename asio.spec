@@ -4,9 +4,9 @@
 #
 Name     : asio
 Version  : 1.10.8
-Release  : 1
-URL      : https://downloads.sourceforge.net/project/asio/asio/1.10.8%20%28Stable%29/asio-1.10.8.tar.gz
-Source0  : https://downloads.sourceforge.net/project/asio/asio/1.10.8%20%28Stable%29/asio-1.10.8.tar.gz
+Release  : 2
+URL      : https://sourceforge.net/projects/asio/files/asio/1.10.8%20%28Stable%29/asio-1.10.8.tar.gz
+Source0  : https://sourceforge.net/projects/asio/files/asio/1.10.8%20%28Stable%29/asio-1.10.8.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSL-1.0
@@ -35,7 +35,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1516747148
+export SOURCE_DATE_EPOCH=1517274554
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -47,7 +47,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1516747148
+export SOURCE_DATE_EPOCH=1517274554
 rm -rf %{buildroot}
 %make_install
 
