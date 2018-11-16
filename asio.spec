@@ -4,13 +4,13 @@
 #
 Name     : asio
 Version  : 1.12.1
-Release  : 5
+Release  : 6
 URL      : https://sourceforge.net/projects/asio/files/asio/1.12.1%20%28Stable%29/asio-1.12.1.tar.gz
 Source0  : https://sourceforge.net/projects/asio/files/asio/1.12.1%20%28Stable%29/asio-1.12.1.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSL-1.0
-Requires: asio-license
+Requires: asio-license = %{version}-%{release}
 BuildRequires : boost-dev
 BuildRequires : openssl-dev
 
@@ -22,7 +22,7 @@ See doc/index.html for API documentation and a tutorial.
 %package dev
 Summary: dev components for the asio package.
 Group: Development
-Provides: asio-devel
+Provides: asio-devel = %{version}-%{release}
 
 %description dev
 dev components for the asio package.
@@ -44,7 +44,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1533069638
+export SOURCE_DATE_EPOCH=1542383648
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -56,10 +56,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1533069638
+export SOURCE_DATE_EPOCH=1542383648
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/asio
-cp LICENSE_1_0.txt %{buildroot}/usr/share/doc/asio/LICENSE_1_0.txt
+mkdir -p %{buildroot}/usr/share/package-licenses/asio
+cp LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/asio/LICENSE_1_0.txt
 %make_install
 
 %files
@@ -550,5 +550,5 @@ cp LICENSE_1_0.txt %{buildroot}/usr/share/doc/asio/LICENSE_1_0.txt
 /usr/include/asio/yield.hpp
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/asio/LICENSE_1_0.txt
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/asio/LICENSE_1_0.txt
