@@ -4,7 +4,7 @@
 #
 Name     : asio
 Version  : 1.12.1
-Release  : 7
+Release  : 8
 URL      : https://sourceforge.net/projects/asio/files/asio/1.12.1%20%28Stable%29/asio-1.12.1.tar.gz
 Source0  : https://sourceforge.net/projects/asio/files/asio/1.12.1%20%28Stable%29/asio-1.12.1.tar.gz
 Summary  : No detailed summary available
