@@ -4,7 +4,7 @@
 #
 Name     : asio
 Version  : 1.12.1
-Release  : 9
+Release  : 10
 URL      : https://sourceforge.net/projects/asio/files/asio/1.12.1%20%28Stable%29/asio-1.12.1.tar.gz
 Source0  : https://sourceforge.net/projects/asio/files/asio/1.12.1%20%28Stable%29/asio-1.12.1.tar.gz
 Summary  : No detailed summary available
@@ -23,6 +23,7 @@ See doc/index.html for API documentation and a tutorial.
 Summary: dev components for the asio package.
 Group: Development
 Provides: asio-devel = %{version}-%{release}
+Requires: asio = %{version}-%{release}
 
 %description dev
 dev components for the asio package.
@@ -38,28 +39,37 @@ license components for the asio package.
 
 %prep
 %setup -q -n asio-1.12.1
+cd %{_builddir}/asio-1.12.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1542383648
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1592613866
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1542383648
+export SOURCE_DATE_EPOCH=1592613866
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/asio
-cp LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/asio/LICENSE_1_0.txt
+cp %{_builddir}/asio-1.12.1/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/asio/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
 %make_install
 
 %files
@@ -67,7 +77,7 @@ cp LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/asio/LICENSE_1_0.txt
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.hpp
+/usr/include/asio.hpp
 /usr/include/asio/associated_allocator.hpp
 /usr/include/asio/associated_executor.hpp
 /usr/include/asio/async_result.hpp
@@ -551,4 +561,4 @@ cp LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/asio/LICENSE_1_0.txt
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/asio/LICENSE_1_0.txt
+/usr/share/package-licenses/asio/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
