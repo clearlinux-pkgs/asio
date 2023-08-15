@@ -4,10 +4,10 @@
 # Using build pattern: configure_ac
 #
 Name     : asio
-Version  : 1.28.0
-Release  : 11
-URL      : https://github.com/chriskohlhoff/asio/archive/asio-1-28-0/asio-1.28.0.tar.gz
-Source0  : https://github.com/chriskohlhoff/asio/archive/asio-1-28-0/asio-1.28.0.tar.gz
+Version  : 1.28.1
+Release  : 12
+URL      : https://github.com/chriskohlhoff/asio/archive/asio-1-28-1/asio-1.28.1.tar.gz
+Source0  : https://github.com/chriskohlhoff/asio/archive/asio-1-28-1/asio-1.28.1.tar.gz
 Summary  : A cross-platform C++ library for network and low-level I/O programming that provides developers with a consistent asynchronous model using a modern C++ approach.
 Group    : Development/Tools
 License  : BSL-1.0
@@ -19,8 +19,8 @@ BuildRequires : openssl-dev
 %define debug_package %{nil}
 
 %description
-asio version 1.28.0
-Released Wednesday, 26 April 2023.
+asio version 1.28.1
+Released Sunday, 30 July 2023.
 See doc/index.html for API documentation and a tutorial.
 
 %package dev
@@ -42,15 +42,15 @@ license components for the asio package.
 
 
 %prep
-%setup -q -n asio-asio-1-28-0
-cd %{_builddir}/asio-asio-1-28-0
+%setup -q -n asio-asio-1-28-1
+cd %{_builddir}/asio-asio-1-28-1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685750666
+export SOURCE_DATE_EPOCH=1692125024
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -65,10 +65,10 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1685750666
+export SOURCE_DATE_EPOCH=1692125024
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/asio
-cp %{_builddir}/asio-asio-1-28-0/asio/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/asio/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90 || :
+cp %{_builddir}/asio-asio-1-28-1/asio/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/asio/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90 || :
 pushd asio
 %make_install
 popd
